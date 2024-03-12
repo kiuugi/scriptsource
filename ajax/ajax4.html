@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 전체요소 : margin, paddung 0 */
+      /* container : flex, 높이 50, 배경색 : lightblue */
+      /* li : 불릿 기호 제거 */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 50px;
+        background-color: lightblue;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .container li {
+        margin: 0 10px;
+        list-style: none;
+        width: 25%;
+        border: 2px solid black;
+        border-radius: 4px;
+
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="container">
+      <li>메뉴 1</li>
+      <li>메뉴 2</li>
+      <li>메뉴 3</li>
+      <li>메뉴 4</li>
+    </ul>
+    <div class="result"></div>
+    <script>
+      // 메뉴3 클릭하면 서버로부터 데이터 가져오기 /
+      // ok : 200
+      // not found : 404 (403, 401, ...)
+      //  서버오류 : 500
+      document.querySelector(".container li:nth-child(3)").addEventListener("click", () => {
+        fetch("https://kiuugi.github.io/version2.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("주소 잘못됨");
+            }
+            // 데이터가 잘 도착 시
+            return response.json(); // json 파일로 바꿈 / 다음 then으로 리턴
+          })
+          .then((data) => {
+            // json 배열 [{},{},{}, ...]
+            let result = `<ul>`; // ul은 한버만 만들어지지만 자식 li는 계속 만들어져야하기때문에 ul은 밖으로 뺌
+            data.forEach((item) => {
+              console.log(item.version);
+              console.log(item.codename);
+
+              // result 에 보여주기 ul li
+              // ` ` 백팁
+              result += `<li>version : ${item.version} </li>`; // forEach 구문이 돌아가면서 계속 생성
+              result += `<li>codname : ${item.codename} </li>`; // result 변수 만들고 변수에 HTML 작성함
+            });
+            result += "</ul>";
+            document.querySelector(".result").innerHTML = result; // result 작성한걸 만들어져있는div 안에 넣음
+          })
+          .catch(() => console.log("오류"));
+      });
+
+      // json : JavaScript Object Notation : 서버와 클라이언트간 데어터 교환 파일
+    </script>
+  </body>
+</html>
