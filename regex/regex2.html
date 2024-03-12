@@ -51,6 +51,7 @@
         // 폼 submit 이 일어나면
         // 아이디 유효성 검증
         // 아이디가 영문자, 숫자 조합으로 6~12자리 허용
+        // (?=^[A-z])(?=.+\d)[A-z\d]{6,12}$
         const regEx2 = /^[A-z0-9]{6,12}$/g;
         if (!regEx2.test(document.querySelector("#userid").value)) {
           document.querySelector("#userid").nextElementSibling.innerHTML = "아이디를 확인해 주세요. 영문자, 숫자 조합으로 6~12자리";
