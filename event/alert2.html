@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .alert-box {
+        background-color: skyblue;
+        padding: 20px;
+        color: white;
+        border-radius: 5px;
+        margin: 10px;
+        position: relative;
+
+        display: none;
+      }
+      .close {
+        border: 1px solid black;
+        color: black;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+
+        cursor: pointer;
+      }
+      button {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: rgb(54, 62, 228);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="alert-box">
+      알림창
+      <span class="close">X</span>
+    </div>
+    <button class="btn1">버튼1</button>
+    <button class="btn2">버튼2</button>
+    <script>
+      const button1 = document.querySelector(".btn1");
+      const button2 = document.querySelector(".btn2");
+      const box = document.querySelector(".alert-box");
+
+      // console.log(box.innerHTML); // 알림창 <span class="close">X</span>
+      // console.log(box.innerText); // 알림창 X
+      // console.log(box.innerContent); // undefined
+
+      // console.log(box.firstChild); // " 알림창 "
+      // console.log(box.firstElementChild); // 태그로 감싸진 요소중에 첫번째 자식 / <span class="close">X</span>
+      // button1.addEventListener("click", () => {
+      //   // 버튼 1 : 아이디를 입력해 주세요 라는 메세지 띄우기
+      //   // box.innerHTML = '아이디를 입력해 주세요.<span class="close">X</span>';
+      //   box.firstChild.textContent = "아이디를 입력해 주세요.";
+      //   box.style.display = "block";
+      // });
+      // button2.addEventListener("click", () => {
+      //   // 버튼 2 : 비밀번호를 입력해 주세요 라는 메세지 띄우기
+      //   // box.innerHTML = '비밀번호를 입력해 주세요.<span class="close">X</span>';
+      //   box.firstChild.textContent = "비밀번호를 입력해 주세요.";
+      //   box.style.display = "block";
+      // });
+      // document.querySelector(".close").addEventListener("click", () => {
+      //   box.style.display = "none";
+      // });
+
+      const notification = (state, msg = "") => {
+        box.style.display = state;
+
+        if (msg != undefined) {
+          box.firstChild.textContent = msg;
+        }
+      };
+      button1.addEventListener("click", () => notification("block", "비밀번호를 입력해 주세요"));
+      button2.addEventListener("click", () => notification("block", "아이디를 입력해 주세요"));
+      document.querySelector(".close").addEventListener("click", () => notification("none"));
+    </script>
+  </body>
+</html>

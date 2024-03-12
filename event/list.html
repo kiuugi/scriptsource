@@ -50,6 +50,19 @@
 
       console.log(products[1]); // id: 1, price: 50000, title: "Springfild Shirt"
       console.log(products[1].title); // "Springfild Shirt"
+
+      // products 값 화면 출력
+      // 다자인 영역 가져오기 => products 값 삽입
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((card, idx) => {
+        // forEach() 안에 두번째 요소를 넣어서 index값을 가져올 수 있음
+        console.log(card, " ", idx);
+        console.log(card.querySelector("h5").innerHTML);
+        console.log(card.querySelector("p > span").innerHTML);
+
+        card.querySelector("h5").innerHTML = products[idx].title;
+        card.querySelector("p > span").innerHTML = products[idx].price;
+      });
     </script>
   </body>
 </html>
