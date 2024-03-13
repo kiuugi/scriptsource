@@ -1,0 +1,17 @@
+오픈 API => 사용법을 보고 사용 / 요청 인터페이스 에서 필수로 보내야하는 값들 확인 /
+	    데이터 (xls, csv, json, xml) 만 제공
+	    xls, csv, json : db 삽입 가능
+			     jdbc 프로그램 작성 가능
+	    실시간 요청 : fetch 데이터 가져온 후 서비스 프로그램 작성 가능
+
+ajax 를 다루는 방법중 하나 => fetch() / JQuery 도 있지만 fetch()함수가 나오기 전에 있던애임
+
+fetch() ==> axios(설치) ajax를 다루기 더 좋은 axios가 있지만 설치가 필요해서 지금은 안함
+
+xhr
+jquery
+fetch
+axios(설치)
+
+ 대부분의 오픈 API는 서버의 부담을 줄이기 위해 / 키 발급, 요청 제한 / 을 함
+postman 크롬 확장프로그램 - 오픈 API 다루기 편리하게 해줌
